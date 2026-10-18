@@ -5,7 +5,14 @@ type Tab='dashboard'|'gardens'|'visits'|'notes'|'orders'|'followups'|'reports';
 type Form='garden'|'note'|'order'|'followup'|'products'|null;
 const nav:[Tab,string,typeof Trees][]=[['dashboard','Tổng quan',LayoutDashboard],['gardens','Nhà vườn',Trees],['visits','Check-in',MapPin],['notes','Nhật ký',ClipboardList],['orders','Đơn thuốc',ShoppingCart],['followups','Tái thăm',CalendarDays],['reports','Báo cáo',BarChart3]];
 const emptyGarden={name:'',customer_name:'',phone:'',address:'',area_ha:'',tree_count:'',variety:'Ri6',stage:stageOptions[0],notes:'',lat:'',lng:''};
-const errors=(e:unknown)=>e instanceof Error?e.message:String(e);
+
+const errors = (e: unknown): string => {
+  if (e && typeof e === 'object' && 'message' in e) {
+    return String(e.message);
+  }
+  return String(e);
+};
+
 export default function App(){
 const[session,setSession]=useState<string|null>(null);const[profile,setProfile]=useState<Profile|null>(null);const[email,setEmail]=useState('');const[password,setPassword]=useState('');const[authError,setAuthError]=useState('');const[loading,setLoading]=useState(false);
 const[tab,setTab]=useState<Tab>('dashboard');const[form,setForm]=useState<Form>(null);const[selected,setSelected]=useState<string|null>(null);const[search,setSearch]=useState('');const[notice,setNotice]=useState('');
