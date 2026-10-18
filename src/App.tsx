@@ -7,12 +7,6 @@ const nav:[Tab,string,typeof Trees][]=[['dashboard','Tổng quan',LayoutDashboar
 const emptyGarden={name:'',customer_name:'',phone:'',address:'',area_ha:'',tree_count:'',variety:'Ri6',stage:stageOptions[0],notes:'',lat:'',lng:''};
 
  const errors = (e: unknown): string => {   if (e && typeof e === "object") {     const err = e as {       message?: string;       code?: string;       details?: string;       hint?: string;     };      return [       err.message,       err.code ? `Mã lỗi: ${err.code}` : "",       err.details,       err.hint     ].filter(Boolean).join(" | ") || JSON.stringify(e);   }    return String(e); }; = (e: unknown): string => {
-  if (e && typeof e === 'object' && 'message' in e) {
-    return String(e.message);
-  }
-  return String(e);
-};
-
 export default function App(){
 const[session,setSession]=useState<string|null>(null);const[profile,setProfile]=useState<Profile|null>(null);const[email,setEmail]=useState('');const[password,setPassword]=useState('');const[authError,setAuthError]=useState('');const[loading,setLoading]=useState(false);
 const[tab,setTab]=useState<Tab>('dashboard');const[form,setForm]=useState<Form>(null);const[selected,setSelected]=useState<string|null>(null);const[search,setSearch]=useState('');const[notice,setNotice]=useState('');
