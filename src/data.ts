@@ -1,0 +1,12 @@
+export type Role='manager'|'staff';
+export type Garden={id:string;owner_id:string;name:string;customer_name:string;phone:string;address:string;lat:number|null;lng:number|null;area_ha:number|null;tree_count:number|null;variety:string;stage:string;notes:string;created_at:string};
+export type Visit={id:string;garden_id:string;staff_id:string;checkin_at:string;checkout_at:string|null;checkin_lat:number|null;checkin_lng:number|null;checkout_lat:number|null;checkout_lng:number|null;summary:string};
+export type Note={id:string;garden_id:string;staff_id:string;visit_id:string|null;condition:string;issue:string;recommendation:string;ph:number|null;ec:number|null;created_at:string};
+export type Product={id:string;name:string;unit:string;price:number;active:boolean};
+export type Order={id:string;garden_id:string;staff_id:string;visit_id:string|null;status:string;total:number;instructions:string;created_at:string};
+export type OrderItem={id:string;order_id:string;product_id:string;quantity:number;unit_price:number;product_name:string};
+export type Followup={id:string;garden_id:string;staff_id:string;due_date:string;task:string;done:boolean;created_at:string};
+export type Profile={id:string;full_name:string;role:Role;organization_id:string};
+export const money=(x:number)=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(x);
+export const date=(x:string)=>new Date(x).toLocaleDateString('vi-VN');
+export const stageOptions=['Phục hồi sau thu hoạch','Đi đọt','Làm bông','Đậu trái','Nuôi trái','Thu hoạch','Khác'];
